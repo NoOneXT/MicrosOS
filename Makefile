@@ -3,7 +3,7 @@ CC             := $(ARCH)-gcc
 LD             := $(ARCH)-ld
 AS             := nasm
 GRUB_MKRESCUE  := grub-mkrescue
-QEMU           := qemu-system-i386
+QEMU           := "/mnt/c/Program Files/qemu/qemu-system-i386.exe"
 
 CFLAGS         := -ffreestanding -O2 -Wall -Wextra -Iinclude
 LDFLAGS        := -T linker.ld -ffreestanding -O2 -nostdlib
@@ -110,7 +110,7 @@ iso: build
 	$(GRUB_MKRESCUE) -o $(ISO_IMAGE) $(ISO_DIR)
 
 run: iso
-	$(QEMU) -cdrom $(ISO_IMAGE) -no-reboot -no-shutdown -monitor none -serial none -parallel none -display curses
+	$(QEMU) -cdrom $(ISO_IMAGE) -no-reboot -no-shutdown -monitor none -serial none -parallel none
 
 run-debug: iso
 	$(QEMU) -cdrom $(ISO_IMAGE) -no-reboot -no-shutdown -monitor none -serial none -parallel none -d int,cpu_reset -D $(BUILD_DIR)/qemu.log
