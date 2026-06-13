@@ -110,7 +110,7 @@ iso: build
 	$(GRUB_MKRESCUE) -o $(ISO_IMAGE) $(ISO_DIR)
 
 run: iso
-	$(QEMU) -cdrom $(ISO_IMAGE) -no-reboot -no-shutdown -monitor none -serial none -parallel none
+	$(QEMU) -cdrom $(ISO_IMAGE) -no-reboot -no-shutdown -monitor none -serial none -parallel none -display curses
 
 run-debug: iso
 	$(QEMU) -cdrom $(ISO_IMAGE) -no-reboot -no-shutdown -monitor none -serial none -parallel none -d int,cpu_reset -D $(BUILD_DIR)/qemu.log
